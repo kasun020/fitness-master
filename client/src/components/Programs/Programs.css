@@ -1,0 +1,70 @@
+.Programs {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 0 5rem;
+}
+
+.programs-header {
+  display: flex;
+  gap: 5rem;
+  font-weight: bold;
+  font-size: 3.5rem;
+  justify-content: center;
+  color: white;
+  text-transform: uppercase;
+  font-style: italic;
+  margin-top: 8%;
+}
+
+.program-categories {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  padding: calc(1rem + 1vw);
+  gap: 0.5rem;
+  color: white;
+  justify-content: space-between;
+  border-radius: 3%;
+}
+
+.category > :nth-child(1) {
+  width: 3rem;
+  height: 3rem;
+  fill: white;
+}
+
+.category > :nth-child(2) {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.category > :nth-child(3) {
+  font-size: 0.9rem;
+  line-height: 30px;
+}
+
+.join-now {
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+  gap: 2rem;
+}
+
+.join-now > img {
+  width: 1rem;
+}
+
+.category:hover {
+  background: var(--planCard);
+  cursor: pointer;
+}

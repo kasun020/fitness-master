@@ -1,0 +1,69 @@
+.registration-form-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #201f1f; /* Orange with 20% opacity */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  /* color: white; */
+  font-size: 18px; /* Increased font size */
+  margin-bottom: 10%;
+}
+
+.registration-form-container h2 {
+  margin-bottom: 20px;
+  color: white; /* Changed to white */
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: white; /* Changed to white */
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="tel"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #524343;
+  font-size: 86%;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px; /* Increased font size */
+}
+
+.submit-button:hover {
+  background-color: #e65c00;
+}
+
+.custom-select {
+  font-weight: bold;
+  color: black;
+}
+
+/* Optional: Additional styles for select element */
+.custom-select option {
+  font-weight: bold;
+  color: black;
+}
