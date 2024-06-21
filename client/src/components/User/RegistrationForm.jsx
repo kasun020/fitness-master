@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./RegistrationForm.css";
 
@@ -31,11 +31,15 @@ const RegistrationForm = () => {
     formData.append("backBodyPicture", backBodyPicture);
 
     try {
-      const res = await axios.post('http://localhost:5000/register/add', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const res = await axios.post(
+        "http://localhost:5000/register/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
       console.log(res.data);
     } catch (err) {
       console.error(err);
@@ -47,7 +51,7 @@ const RegistrationForm = () => {
       <h2>Registration Form</h2>
       <form onSubmit={sendData}>
         <div className="form-group">
-          <label>Schedule Type:</label>
+          <label style={{ marginLeft: "1rem" }}>Schedule Type:</label>
           <select
             className="custom-select"
             value={scheduleType}
@@ -61,7 +65,7 @@ const RegistrationForm = () => {
           </select>
         </div>
         <div className="form-group">
-          <label>Name:</label>
+          <label style={{ marginLeft: "1rem" }}>Name:</label>
           <input
             type="text"
             value={name}
@@ -70,7 +74,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Age:</label>
+          <label style={{ marginLeft: "1rem" }}>Age:</label>
           <input
             type="number"
             value={age}
@@ -79,7 +83,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Gender:</label>
+          <label style={{ marginLeft: "1rem" }}>Gender:</label>
           <select
             value={gender}
             onChange={(e) => setGender(e.target.value)}
@@ -91,7 +95,7 @@ const RegistrationForm = () => {
           </select>
         </div>
         <div className="form-group">
-          <label>Weight:</label>
+          <label style={{ marginLeft: "1rem" }}>Weight:</label>
           <input
             type="number"
             value={weight}
@@ -100,7 +104,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Whatsapp Number:</label>
+          <label style={{ marginLeft: "1rem" }}>Whatsapp Number:</label>
           <input
             type="text"
             value={whatsappNumber}
@@ -109,7 +113,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Payment Slip:</label>
+          <label style={{ marginLeft: "1rem" }}>Payment Slip:</label>
           <input
             type="file"
             onChange={(e) => setPaymentSlip(e.target.files[0])}
@@ -117,7 +121,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Front Body Picture:</label>
+          <label style={{ marginLeft: "1rem" }}>Front Body Picture:</label>
           <input
             type="file"
             onChange={(e) => setFrontBodyPicture(e.target.files[0])}
@@ -125,14 +129,20 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Back Body Picture:</label>
+          <label style={{ marginLeft: "1rem" }}>Back Body Picture:</label>
           <input
             type="file"
             onChange={(e) => setBackBodyPicture(e.target.files[0])}
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="submit-button"
+          style={{ marginLeft: "1rem" }}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
