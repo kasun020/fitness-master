@@ -1,0 +1,31 @@
+/* Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+}
+
+.logo {
+  width: 10rem;
+  height: auto; /* Maintain aspect ratio */
+}
+
+.header-menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.nav-link:hover {
+  color: var(--orange); /* Orange hover color */
+}
