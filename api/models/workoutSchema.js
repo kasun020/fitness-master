@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
 // const exerciseSchema = new Schema({
 //   exname: { type: String, required: true },
@@ -43,4 +43,4 @@ const workoutSchema = new Schema({
 
 const Workout = mongoose.model("Workout", workoutSchema);
 
-module.exports = Workout;
+export default Workout;

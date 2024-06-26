@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import Programs from "../Programs/Programs";
-import Workout from "../Workout/Workout.jsx";
+//import Workout from "../Workout/Workout.jsx";
 import "./Dashboard.css"; // Import the CSS file
 
 function App() {
@@ -127,7 +127,8 @@ function App() {
             <div className="workout-section">
               {" "}
               {/* Add a CSS class for styling */}
-              <Workout /> {/* Render the Programs component */}
+              {/* <Workout />  */}
+              {/* Render the Programs component */}
             </div>
           )}
         </div>
