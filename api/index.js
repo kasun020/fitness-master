@@ -1,14 +1,14 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import { GridFsStorage } from 'multer-gridfs-storage';
-import multer from 'multer';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import authRoute from './Routes/auth.js';
-import userRoute from './Routes/signupRoute.js';
-import registerRoute from './Routes/registerRoute.js';
-import workoutRoute from './Routes/workoutRoute.js';
+import express from "express";
+import mongoose from "mongoose";
+import { GridFsStorage } from "multer-gridfs-storage";
+import multer from "multer";
+import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import authRoute from "./Routes/auth.js";
+import userRoute from "./Routes/signupRoute.js";
+import registerRoute from "./Routes/registerRoute.js";
+//import workoutRoute from "./Routes/workoutRoute.js";
 
 dotenv.config();
 
@@ -32,9 +32,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('MongoDB Database is connected');
+    console.log("MongoDB Database is connected");
   } catch (err) {
-    console.error('MongoDB connection FAIL', err);
+    console.error("MongoDB connection FAIL", err);
     process.exit(1); // Exit process with failure
   }
 };
@@ -45,15 +45,13 @@ const storage = multer.memoryStorage(); // Use memory storage for buffers
 
 const upload = multer({ storage: storage });
 
+app.use("/auth", authRoute);
+app.use("/user", userRoute);
+app.use("/register", registerRoute);
+//app.use('/workouts', workoutRoute);
 
-
-app.use('/auth', authRoute);
-app.use('/user', userRoute);
-app.use('/register', registerRoute);
-app.use('/workouts', workoutRoute);
-
-app.get('/', (req, res) => {
-  res.send('API is working');
+app.get("/", (req, res) => {
+  res.send("API is working");
 });
 
 const startServer = async () => {
@@ -63,7 +61,7 @@ const startServer = async () => {
       console.log(`Server is running on port ${port}`);
     });
   } catch (err) {
-    console.error('Failed to start server', err);
+    console.error("Failed to start server", err);
   }
 };
 

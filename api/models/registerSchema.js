@@ -3,53 +3,60 @@ import mongoose from "mongoose";
 const imageSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   img: {
     data: Buffer,
-    contentType: String
-  }
+    contentType: String,
+  },
 });
 
 const registerSchema = new mongoose.Schema({
   scheduleType: {
     type: String,
     required: true,
-    enum: ["Body Building", "Fat Burning", "Ladies"]
+    enum: ["Body Building", "Fat Burning", "Ladies"],
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   age: {
     type: Number,
-    required: true
+    required: true,
   },
   gender: {
     type: String,
     required: true,
-    enum: ["Male", "Female"]
+    enum: ["Male", "Female"],
   },
   weight: {
     type: Number,
-    required: true
+    required: true,
   },
   whatsappNumber: {
     type: String,
-    required: true
+    required: true,
   },
   paymentSlip: {
     type: imageSchema,
-    required: true
+    required: true,
   },
   frontBodyPicture: {
     type: imageSchema,
-    required: true
+    required: true,
   },
   backBodyPicture: {
     type: imageSchema,
-    required: true
-  }
+    required: true,
+  },
+  // Reference to the workouts
+  workouts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Workout",
+    },
+  ],
 });
 
 const RegisterModel = mongoose.model("Register", registerSchema);
