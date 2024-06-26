@@ -6,6 +6,7 @@ import SignUp from "./components/Signup/Signup";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RegistrationForm from "./components/User/RegistrationForm";
 import HomeProgram from "./components/Pages/HomeProgram";
+import UserDashboard from "./components/Dashboard/userDashboard.jsx";
 
 const isAdmin = localStorage.getItem("role") === "admin";
 
@@ -17,6 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/registration" element={<RegistrationForm />} />
+        <Route path="/UserDashboard" element={<UserDashboard />} />
+
         {/* Conditionally render the Dashboard route */}
         {isAdmin ? (
           <Route path="/dashboard" element={<Dashboard />} />
