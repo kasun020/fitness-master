@@ -10,7 +10,7 @@ import Programs from "../Programs/Programs";
 
 import { motion } from "framer-motion";
 
-const User = () => {
+const UserDashboard = () => {
   const navigate = useNavigate();
   const transition = { type: "spring", duration: 1.8 };
 
@@ -127,4 +127,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default UserDashboard;

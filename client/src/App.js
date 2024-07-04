@@ -6,7 +6,9 @@ import SignUp from "./components/Signup/Signup";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RegistrationForm from "./components/User/RegistrationForm";
 import HomeProgram from "./components/Pages/HomeProgram";
-import UserDashboard from "./components/Dashboard/userDashboard.jsx";
+import UserDashboard from "./components/Dashboard/UserDashboard.jsx";
+
+import { GlobalProvider } from "./contexts/GlobalContext.jsx";
 
 const isAdmin = localStorage.getItem("role") === "admin";
 
@@ -22,7 +24,7 @@ function App() {
 
         {/* Conditionally render the Dashboard route */}
         {isAdmin ? (
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<GlobalProvider><Dashboard /></GlobalProvider>} />
         ) : (
           // Redirect to login page if not admin
           <Route path="/dashboard" element={<Navigate to="/login" replace />} />

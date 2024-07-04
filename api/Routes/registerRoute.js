@@ -6,8 +6,6 @@ import {
   updateRegistration,
   deleteRegistration,
 } from "../Controllers/registerController.js";
-import Register from "../models/registerSchema.js";
-import Workout from "../models/workoutSchema.js";
 
 import multer from "multer";
 

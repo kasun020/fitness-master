@@ -1,113 +1,113 @@
-/* Add a background color for the whole page */
-body {
-  background-color: rgba(110, 109, 107, 0.8);
+.dashboard-container {
+  background-color: white;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px !important;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
-.container {
+.dashboard-container .sidebar {
+  width: 200px;
+  background-color: var(--orange); 
+  color: white;
+  height: 100vh;
+  padding: 1rem;
+  position: absolute; 
+  top: 0;
+  left: -200px;
+  transition: 0.2s;
+  box-sizing: border-box;
+  z-index: 1000;
+  
+}
+
+.dashboard-container .sidebar.active{
+  left: 0;
+}
+
+.dashboard-container .toggle-icon{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+  top: 10px;
+  left: 10px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+}
+
+.dashboard-container .toggle-icon:hover{
+  cursor: pointer;
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.dashboard-container .toggle-icon:active{
+  box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+}
+
+
+.dashboard-container .container {
   margin-top: 50px;
   display: flex;
   padding-bottom: 60%;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
+  align-items: flex-start; 
   width: 100%;
-  margin-left: 2rem; /* Reduced margin to move to the left */
+  margin-left: 2rem;
+  z-index: 0;
 }
 
-.table-title {
-  text-align: center;
-  margin-bottom: 20px;
-  width: 16rem;
-  color: #fff;
-  background-color: rgba(37, 36, 33, 0.4); /* Orange with 80% opacity */
-  padding: 15px;
-  border-radius: 8px;
-  margin-left: 35%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.dashboard {
-  display: flex;
-}
 
-.sidebar {
-  width: 200px;
-  background-color: rgba(63, 46, 75, 0.4); /* Transparent color */
-  color: white;
-  height: 100vh; /* Full height */
-  padding: 1rem;
-  position: fixed; /* Fixed sidebar */
-  border-radius: 10px;
-  box-shadow: 5px 5px 15px rgba(156, 149, 149, 0.6); /* 3D shadow effect */
-  transform: perspective(3000px) rotateY(20deg); /* 3D perspective effect */
-}
 
-.sidebar h2 {
+.dashboard-container .sidebar h2 {
   text-align: center;
 }
 
-.sidebar ul {
+.dashboard-container .sidebar ul {
   list-style-type: none;
   padding: 0;
 }
 
-.sidebar ul li {
+.dashboard-container .sidebar ul li {
   padding: 10px 0;
   cursor: pointer;
   text-align: center;
 }
 
-.sidebar ul li:hover {
-  background-color: #383434;
+.dashboard-container .sidebar ul li:hover {
+  background-color: #ffa739;
   border-radius: 2rem;
   width: 75%;
-  margin: 0 auto; /* Center horizontally */
+  margin: 0 auto; 
 }
 
-.content {
-  margin-left: 220px; /* Adjust based on sidebar width */
-  padding: 1rem;
-  width: calc(100% - 220px); /* Adjust based on sidebar width */
-}
 
-.custom-table {
-  border-radius: 20px; /* Add border radius for the table */
-  overflow: hidden;
-  background-color: rgba(54, 48, 35, 0.2); /* Transparent background */
-  width: 40%;
-}
 
-.custom-table .rdt_TableHead,
-.custom-table .rdt_TableBody,
-.custom-table .rdt_Pagination {
-  background-color: rgba(51, 44, 29, 0.4); /* Transparent background */
-  color: #0c0606;
-  border-radius: 1rem; /* Rounded corners */
-}
 
-.custom-table .rdt_TableRow {
-  background-color: rgba(182, 162, 121, 0.2); /* Transparent background */
-  color: #e9c2c2;
-  border-radius: 2rem;
-}
-
-.custom-table .rdt_TableRow:hover {
-  background-color: rgba(77, 69, 54, 0.4); /* Slightly darker on hover */
-  color: #fff;
-}
-
-.custom-table .rdt_Pagination {
-  background-color: rgba(54, 48, 35, 0.4); /* Transparent background */
-  color: #fff;
-  border-radius: 20px; /* Rounded corners */
-}
-
-/* Move the Rows per page bar to the right corner */
-.custom-table table.dataTable thead .dataTables_length {
-  float: right;
-}
-.workout-section {
-  padding: 1px;
-  border-radius: 10px;
-  width: 100%;
-}

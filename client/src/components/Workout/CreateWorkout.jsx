@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./createWorkout.css";
 
-const RegistrationForm = () => {
+const CreateWorkout = () => {
   const [scheduleType, setScheduleType] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -118,4 +118,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default CreateWorkout;

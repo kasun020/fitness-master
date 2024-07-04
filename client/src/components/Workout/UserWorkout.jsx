@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./UserWorkout.css";
 
-const Workout = () => {
+const UserWorkout = () => {
   const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const Workout = () => {
   );
 };
 
-export default Workout;
+export default UserWorkout;
