@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 ::-webkit-scrollbar {
-  display: none;
+  width: 0;
 }
 .stroke-text {
   color: transparent;

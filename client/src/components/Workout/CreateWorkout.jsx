@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./createWorkout.css";
 
-const RegistrationForm = () => {
+import { useGlobalContext } from "../../contexts/GlobalContext";
+
+const CreateWorkout = () => {
+
+  const {
+    getAll,
+  } = useGlobalContext();
+
   const [scheduleType, setScheduleType] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -13,32 +20,33 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare the data object to send
-    const formData = {
-      scheduleType: scheduleType,
-      Username: name,
-      Instructions: description,
-      day1workout: day1workout,
-      day2workout: day2workout,
-      day3workout: day3workout,
-    };
 
-    try {
-      // Send a POST request to the backend API
-      const response = await axios.post(
-        `http://localhost:5000/api/add-workout/:userId`, // Replace with your actual endpoint
-        formData
-      );
+    // // Prepare the data object to send
+    // const formData = {
+    //   scheduleType: scheduleType,
+    //   Username: name,
+    //   Instructions: description,
+    //   day1workout: day1workout,
+    //   day2workout: day2workout,
+    //   day3workout: day3workout,
+    // };
 
-      console.log("Workout added successfully:", response.data);
-      // Optionally, you can add navigation logic here if needed
-    } catch (error) {
-      console.error("Error adding workout:", error.message);
-    }
+    // try {
+    //   // Send a POST request to the backend API
+    //   const response = await axios.post(
+    //     `http://localhost:5000/api/add-workout/:userId`, // Replace with your actual endpoint
+    //     formData
+    //   );
+
+    //   console.log("Workout added successfully:", response.data);
+    //   // Optionally, you can add navigation logic here if needed
+    // } catch (error) {
+    //   console.error("Error adding workout:", error.message);
+    // }
   };
 
   return (
-    <div className="registration-form-container">
+    <div className="create-workout-form-container">
       <h2>WORKOUT</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group-row">
@@ -114,8 +122,9 @@ const RegistrationForm = () => {
           Submit
         </button>
       </form>
+      <button onClick={() => getAll()}>click me</button>
     </div>
   );
 };
 
-export default RegistrationForm;
+export default CreateWorkout;

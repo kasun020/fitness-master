@@ -1,0 +1,58 @@
+.admin-dash-table-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+  }
+  
+  .schedule-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .schedule-table th, 
+  .schedule-table td {
+    padding: 12px 15px;
+  }
+  
+  .schedule-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .schedule-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .schedule-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .schedule-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #009879;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #007a63;
+  }
+  
