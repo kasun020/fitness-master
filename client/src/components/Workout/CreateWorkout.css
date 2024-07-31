@@ -1,8 +1,141 @@
 .create-workout-form-container {
-  height: 100vh;
-  width: 100vw;
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.personal-section {
-  border: red 1px solid;
+.create-workout-form-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.personal-section,
+.workout-section {
+  margin-bottom: 1.5rem;
+}
+
+.personal-section h3 {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.personal {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.personal label {
+  flex: 1;
+  font-weight: bold;
+  color: #444;
+}
+
+.personal input {
+  flex: 2;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-item-1,
+.form-item-3,
+.form-item-4 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-item-3 img,
+.form-item-4 img {
+  margin-top: 1rem;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  max-width: 100%;
+  height: auto;
+}
+
+.desc {
+  margin-top: 1.5rem;
+}
+
+.desc label {
+  display: block;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.desc textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+.workout-form-container {
+  margin-top: 1.5rem;
+}
+
+.workout-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.workout-row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.workout-row label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #444;
+}
+
+.workout-row textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
 }

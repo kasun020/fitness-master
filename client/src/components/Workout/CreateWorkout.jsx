@@ -22,7 +22,6 @@ const CreateWorkout = () => {
   const [day3workout, setDay3workout] = useState("");
   const [frontImage, setFrontImage] = useState();
   const [backImage, setBackImage] = useState();
-  const [paymentSlip, setPaymentSlip] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,11 +59,7 @@ const CreateWorkout = () => {
       setGender(foundUser.gender);
       setScheduleType(foundUser.scheduleType); // Set the schedule type from user data
 
-      const paymentSlipBase64 = Buffer.from(
-        foundUser.paymentSlip.img.data
-      ).toString("base64");
-      const paymentSlipSrc = `data:${foundUser.paymentSlip.img.contentType};base64,${paymentSlipBase64}`;
-      setPaymentSlip(paymentSlipSrc);
+      
 
       const frontBase64 = Buffer.from(
         foundUser.frontBodyPicture.img.data
@@ -106,7 +101,7 @@ const CreateWorkout = () => {
         <div className="personal">
           <label style={{ marginLeft: "1rem" }}>Gender:</label>
           <input
-            type="number"
+            type="text"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             disabled={true}
@@ -120,12 +115,6 @@ const CreateWorkout = () => {
             onChange={(e) => setWeight(e.target.value)}
             disabled={true}
           />
-        </div>
-      </section>
-      <section className="workout">
-        <div className="workout">
-          <label htmlFor=""></label>
-          <input type="text" />
         </div>
       </section>
       <form onSubmit={handleSubmit}>
@@ -146,16 +135,6 @@ const CreateWorkout = () => {
           </div>
 
           <div className="form-item-3">
-            <label style={{ marginLeft: "1rem" }}>Payment Slip:</label>
-            {paymentSlip && (
-              <img
-                src={paymentSlip}
-                alt="payment-slip"
-                style={{ height: "250px", width: "250px" }}
-              />
-            )}
-          </div>
-          <div className="form-item-4">
             <label style={{ marginLeft: "1rem" }}>Front Image:</label>
             {frontImage && (
               <img
@@ -165,7 +144,7 @@ const CreateWorkout = () => {
               />
             )}
           </div>
-          <div className="form-item-5">
+          <div className="form-item-4">
             <label style={{ marginLeft: "1rem" }}>Back Image:</label>
             {backImage && (
               <img
