@@ -21,7 +21,6 @@ function Dashboard() {
           <li onClick={() => handleSidebarClick("workouts")}>Workouts</li>
         </ul>
       </div>
-    <div className="dashboard-container">
       <div className="content">
         {activeSection === "workouts" && (
                 <div className="workout-section">
