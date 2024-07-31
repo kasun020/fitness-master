@@ -23,11 +23,19 @@ function Dashboard() {
       </div>
     <div className="dashboard-container">
       <div className="content">
+        {activeSection === "workouts" && (
+                <div className="workout-section">
+                {" "}
+                {/* Add a CSS class for styling */}
+                <CreateWorkout /> {/* Render the Programs component */}
+                </div>
+          )}
+        {activeSection === "Users" && (
         <AdminDashTable /> 
+          )}
       </div>
     </div>
   );
 }
 
-export default Dashboard;
 export default Dashboard;
