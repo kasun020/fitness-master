@@ -30,7 +30,7 @@ function Dashboard() {
                 </div>
           )}
         {activeSection === "Users" && (
-        <AdminDashTable /> 
+            <AdminDashTable />
           )}
       </div>
     </div>
