@@ -1,5 +1,6 @@
 import './adminDashTable.css';
 import { useGlobalContext } from "../../contexts/GlobalContext";
+import { Link } from 'react-router-dom';
 
 export const AdminDashTable = () => {
 
@@ -31,18 +32,18 @@ export const AdminDashTable = () => {
             </tr>
           </thead>
           <tbody>
-            {users.data.map((schedule, index) => (
+            {users.data.map((user, index) => (
               <tr key={index}>
-                <td>{schedule.name}</td>
-                <td>{schedule.scheduleType}</td>
-                <td>{schedule.age}</td>
-                <td>{schedule.gender}</td>
-                <td>{schedule.weight}</td>
-                <td>{schedule.paymentSlip.name}</td>
-                <td>{schedule.workout}</td>
+                <td>{user.name}</td>
+                <td>{user.scheduleType}</td>
+                <td>{user.age}</td>
+                <td>{user.gender}</td>
+                <td>{user.weight}</td>
+                <td>{user.paymentSlip.name}</td>
+                <td>{user.workout}</td>
                 <td>
-                  <button onClick={() => getAll()}>
-                    More info
+                  <button>
+                    <Link to={`/createworkout/${user._id}`}>More info</Link>
                   </button>
                 </td>
               </tr>

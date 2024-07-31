@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./createWorkout.css";
 
 import { useGlobalContext } from "../../contexts/GlobalContext";
+import { useParams } from "react-router-dom";
+
+import { Buffer } from 'buffer'
+
 
 const CreateWorkout = () => {
 
+  const { id } = useParams();
+
   const {
-    getAll,
+    users,
   } = useGlobalContext();
 
   const [scheduleType, setScheduleType] = useState("");
@@ -16,9 +22,13 @@ const CreateWorkout = () => {
   const [day1workout, setDay1workout] = useState("");
   const [day2workout, setDay2workout] = useState("");
   const [day3workout, setDay3workout] = useState("");
+  const [ frontImage, setFrontImage ] = useState();
+  const [ backImage, setBackImage ] = useState();
+  const [ paymentSlip, setPaymentSlip ] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
 
 
     // // Prepare the data object to send
@@ -44,6 +54,27 @@ const CreateWorkout = () => {
     //   console.error("Error adding workout:", error.message);
     // }
   };
+  
+  useEffect(() => {
+    const foundUser = users.data.find(user => user._id === id);
+    if (foundUser) {
+      setName(foundUser.name);
+      setScheduleType(foundUser.scheduleType); // Set the schedule type from user data
+
+      const paymentSlipBase64 = Buffer.from(foundUser.paymentSlip.img.data).toString('base64');
+      const paymentSlipSrc = `data:${foundUser.paymentSlip.img.contentType};base64,${paymentSlipBase64}`;
+      setPaymentSlip(paymentSlipSrc);
+
+      const frontBase64 = Buffer.from(foundUser.frontBodyPicture.img.data).toString('base64');
+      const frontSrc = `data:${foundUser.frontBodyPicture.img.contentType};base64,${frontBase64}`;
+      setFrontImage(frontSrc);
+
+      const backBase64 = Buffer.from(foundUser.backBodyPicture.img.data).toString('base64');
+      const backSrc = `data:${foundUser.backBodyPicture.img.contentType};base64,${backBase64}`;
+      setBackImage(backSrc);
+
+    }
+  }, []);
 
   return (
     <div className="create-workout-form-container">
@@ -56,7 +87,7 @@ const CreateWorkout = () => {
               className="custom-select"
               value={scheduleType}
               onChange={(e) => setScheduleType(e.target.value)}
-              required
+              disabled = {true}
             >
               <option value="">Select Schedule Type</option>
               <option value="Body Building">Body Building</option>
@@ -71,8 +102,20 @@ const CreateWorkout = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
+              disabled = {true}
             />
+          </div>
+          <div className="form-item-3">
+            <label style={{ marginLeft: "1rem" }}>Payment Slip:</label>
+            {paymentSlip && <img src={paymentSlip} alt="payment-slip" style={{height: '250px', width: '250px'}}/>}
+          </div>
+          <div className="form-item-4">
+            <label style={{ marginLeft: "1rem" }}>Front Image:</label>
+            {frontImage && <img src={frontImage} alt="payment-slip" style={{height: '250px', width: '250px'}}/>}
+          </div>
+          <div className="form-item-5">
+            <label style={{ marginLeft: "1rem" }}>Back Image:</label>
+            {backImage && <img src={backImage} alt="payment-slip" style={{height: '250px', width: '250px'}}/>}
           </div>
         </div>
 
@@ -121,8 +164,8 @@ const CreateWorkout = () => {
         >
           Submit
         </button>
+        
       </form>
-      <button onClick={() => getAll()}>click me</button>
     </div>
   );
 };
