@@ -9,6 +9,9 @@ import HomeProgram from "./components/Pages/HomeProgram";
 import UserDashboard from "./components/Dashboard/UserDashboard.jsx";
 
 import { GlobalProvider } from "./contexts/GlobalContext.jsx";
+import UserDashboard from "./components/Dashboard/UserDashboard.jsx";
+
+import { GlobalProvider } from "./contexts/GlobalContext.jsx";
 
 const isAdmin = localStorage.getItem("role") === "admin";
 
