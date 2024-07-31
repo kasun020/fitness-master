@@ -1,35 +1,31 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./createWorkout.css";
 
-import { useGlobalContext } from "../../contexts/GlobalContext";
 import { useParams } from "react-router-dom";
+import { useGlobalContext } from "../../contexts/GlobalContext";
 
-import { Buffer } from 'buffer'
-
+import { Buffer } from "buffer";
 
 const CreateWorkout = () => {
-
   const { id } = useParams();
 
-  const {
-    users,
-  } = useGlobalContext();
+  const { users } = useGlobalContext();
 
   const [scheduleType, setScheduleType] = useState("");
   const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [weight, setWeight] = useState("");
+  const [gender, setGender] = useState("");
   const [description, setDescription] = useState("");
   const [day1workout, setDay1workout] = useState("");
   const [day2workout, setDay2workout] = useState("");
   const [day3workout, setDay3workout] = useState("");
-  const [ frontImage, setFrontImage ] = useState();
-  const [ backImage, setBackImage ] = useState();
-  const [ paymentSlip, setPaymentSlip ] = useState();
+  const [frontImage, setFrontImage] = useState();
+  const [backImage, setBackImage] = useState();
+  const [paymentSlip, setPaymentSlip] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-
 
     // // Prepare the data object to send
     // const formData = {
@@ -54,31 +50,84 @@ const CreateWorkout = () => {
     //   console.error("Error adding workout:", error.message);
     // }
   };
-  
+
   useEffect(() => {
-    const foundUser = users.data.find(user => user._id === id);
+    const foundUser = users.data.find((user) => user._id === id);
     if (foundUser) {
       setName(foundUser.name);
+      setAge(foundUser.age);
+      setWeight(foundUser.weight);
+      setGender(foundUser.gender);
       setScheduleType(foundUser.scheduleType); // Set the schedule type from user data
 
-      const paymentSlipBase64 = Buffer.from(foundUser.paymentSlip.img.data).toString('base64');
+      const paymentSlipBase64 = Buffer.from(
+        foundUser.paymentSlip.img.data
+      ).toString("base64");
       const paymentSlipSrc = `data:${foundUser.paymentSlip.img.contentType};base64,${paymentSlipBase64}`;
       setPaymentSlip(paymentSlipSrc);
 
-      const frontBase64 = Buffer.from(foundUser.frontBodyPicture.img.data).toString('base64');
+      const frontBase64 = Buffer.from(
+        foundUser.frontBodyPicture.img.data
+      ).toString("base64");
       const frontSrc = `data:${foundUser.frontBodyPicture.img.contentType};base64,${frontBase64}`;
       setFrontImage(frontSrc);
 
-      const backBase64 = Buffer.from(foundUser.backBodyPicture.img.data).toString('base64');
+      const backBase64 = Buffer.from(
+        foundUser.backBodyPicture.img.data
+      ).toString("base64");
       const backSrc = `data:${foundUser.backBodyPicture.img.contentType};base64,${backBase64}`;
       setBackImage(backSrc);
-
     }
   }, []);
 
   return (
     <div className="create-workout-form-container">
       <h2>WORKOUT</h2>
+      <section className="personal-section">
+        <h3>Personal Information</h3>
+        <div className="personal">
+          <label style={{ marginLeft: "1rem" }}>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={true}
+          />
+        </div>
+        <div className="personal">
+          <label style={{ marginLeft: "1rem" }}>Age:</label>
+          <input
+            type="number"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            disabled={true}
+          />
+        </div>
+        <div className="personal">
+          <label style={{ marginLeft: "1rem" }}>Gender:</label>
+          <input
+            type="number"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            disabled={true}
+          />
+        </div>
+        <div className="personal">
+          <label style={{ marginLeft: "1rem" }}>Weight:(kg):</label>
+          <input
+            type="number"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            disabled={true}
+          />
+        </div>
+      </section>
+      <section className="workout">
+        <div className="workout">
+          <label htmlFor=""></label>
+          <input type="text" />
+        </div>
+      </section>
       <form onSubmit={handleSubmit}>
         <div className="form-group-row">
           <div className="form-item-1">
@@ -87,7 +136,7 @@ const CreateWorkout = () => {
               className="custom-select"
               value={scheduleType}
               onChange={(e) => setScheduleType(e.target.value)}
-              disabled = {true}
+              disabled={true}
             >
               <option value="">Select Schedule Type</option>
               <option value="Body Building">Body Building</option>
@@ -96,26 +145,35 @@ const CreateWorkout = () => {
             </select>
           </div>
 
-          <div className="form-item-2">
-            <label style={{ marginLeft: "1rem" }}>Name:</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled = {true}
-            />
-          </div>
           <div className="form-item-3">
             <label style={{ marginLeft: "1rem" }}>Payment Slip:</label>
-            {paymentSlip && <img src={paymentSlip} alt="payment-slip" style={{height: '250px', width: '250px'}}/>}
+            {paymentSlip && (
+              <img
+                src={paymentSlip}
+                alt="payment-slip"
+                style={{ height: "250px", width: "250px" }}
+              />
+            )}
           </div>
           <div className="form-item-4">
             <label style={{ marginLeft: "1rem" }}>Front Image:</label>
-            {frontImage && <img src={frontImage} alt="payment-slip" style={{height: '250px', width: '250px'}}/>}
+            {frontImage && (
+              <img
+                src={frontImage}
+                alt="payment-slip"
+                style={{ height: "250px", width: "250px" }}
+              />
+            )}
           </div>
           <div className="form-item-5">
             <label style={{ marginLeft: "1rem" }}>Back Image:</label>
-            {backImage && <img src={backImage} alt="payment-slip" style={{height: '250px', width: '250px'}}/>}
+            {backImage && (
+              <img
+                src={backImage}
+                alt="payment-slip"
+                style={{ height: "250px", width: "250px" }}
+              />
+            )}
           </div>
         </div>
 
@@ -164,7 +222,6 @@ const CreateWorkout = () => {
         >
           Submit
         </button>
-        
       </form>
     </div>
   );
