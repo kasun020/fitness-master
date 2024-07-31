@@ -128,4 +128,3 @@ const CreateWorkout = () => {
 };
 
 export default CreateWorkout;
-export default CreateWorkout;
