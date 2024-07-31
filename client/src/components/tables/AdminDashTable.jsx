@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { Buffer } from 'buffer';
 import { useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons'
+
+
 export const AdminDashTable = () => {
   const { getAll, users } = useGlobalContext();
   const [fullScreenImage, setFullScreenImage] = useState(null);
@@ -26,11 +30,9 @@ export const AdminDashTable = () => {
               <tr>
                 <th>Name</th>
                 <th>Schedule Type</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Weight(KG)</th>
+                <th>Mobile Number</th>
                 <th>Payment Slip</th>
-                <th>Workout</th>
+                <th>Comfirmation</th>
                 <th>Option</th>
               </tr>
             </thead>
@@ -45,9 +47,7 @@ export const AdminDashTable = () => {
                   <tr key={index}>
                     <td>{user.name}</td>
                     <td>{user.scheduleType}</td>
-                    <td>{user.age}</td>
-                    <td>{user.gender}</td>
-                    <td>{user.weight}</td>
+                    <td>{user.whatsappNumber}</td>
                     <td>
                       <button onClick={() => toggleFullScreen(paymentSlipSrc)}>
                         <img
@@ -57,7 +57,13 @@ export const AdminDashTable = () => {
                         />
                       </button>
                     </td>
-                    <td>{user.workout}</td>
+                    <td style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                      {
+
+                        user.workouts[0] ? 
+                        <FontAwesomeIcon icon={faCircleCheck} color='green'/>: <FontAwesomeIcon icon={faCircleXmark} color='red'/>
+                      }
+                    </td>
                     <td>
                       <button>
                         <Link to={`/createworkout/${user._id}`}>More info</Link>

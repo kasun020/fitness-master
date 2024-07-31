@@ -9,6 +9,9 @@ import {
 
 import multer from "multer";
 
+import Workout from "../models/workoutSchema.js";
+import Register from "../models/registerSchema.js";
+
 // Configure multer storage
 const storage = multer.memoryStorage(); // Using memory storage for buffers
 const upload = multer({ storage: storage });
@@ -82,16 +85,54 @@ router.post("/add-workout/:userId", async (req, res) => {
   }
 });
 // GET route to fetch all workouts for a user
-router.get("/get-workouts/:userId", async (req, res) => {
+router.get("/get-workouts/:workoutId", async (req, res) => {
   try {
-    const userId = req.params.userId;
-    const user = await Register.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    const workoutId = req.params.workoutId;
+
+
+    // Fetch workouts associated with the user
+    const workouts = await Workout.find({ _id: workoutId });
+
+    // Return the workouts
+    res.status(200).json(workouts);
+  } catch (error) {
+    // Handle any errors
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// PUT route to update a workout by ID
+router.put("/update-workout/:workoutId", async (req, res) => {
+  try {
+    const { workoutId } = req.params;
+    const { 
+      scheduleType, 
+      Username, 
+      Instructions, 
+      day1workout, 
+      day2workout, 
+      day3workout 
+    } = req.body;
+
+    // Find the workout by ID and update it
+    const updatedWorkout = await Workout.findByIdAndUpdate(
+      workoutId,
+      {
+        scheduleType,
+        Username,
+        Instructions,
+        day1workout,
+        day2workout,
+        day3workout,
+      },
+      { new: true } // Returns the updated workout document
+    );
+
+    if (!updatedWorkout) {
+      return res.status(404).json({ message: "Workout not found" });
     }
 
-    const workouts = await Workout.find({ Username: user.name });
-    res.json(workouts);
+    res.status(200).json({ message: "Workout updated successfully", workout: updatedWorkout });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

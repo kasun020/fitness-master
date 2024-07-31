@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./createWorkout.css";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../contexts/GlobalContext";
 
 import { Buffer } from "buffer";
+
+import axios from "axios";
 
 const CreateWorkout = () => {
   const { id } = useParams();
 
   const { users } = useGlobalContext();
+
+  const navigate = useNavigate();
 
   const [scheduleType, setScheduleType] = useState("");
   const [name, setName] = useState("");
@@ -22,32 +26,73 @@ const CreateWorkout = () => {
   const [day3workout, setDay3workout] = useState("");
   const [frontImage, setFrontImage] = useState();
   const [backImage, setBackImage] = useState();
+  const [workoutid, setWorkoutId] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // // Prepare the data object to send
-    // const formData = {
-    //   scheduleType: scheduleType,
-    //   Username: name,
-    //   Instructions: description,
-    //   day1workout: day1workout,
-    //   day2workout: day2workout,
-    //   day3workout: day3workout,
-    // };
+    // Prepare the data object to send
+    const formData = {
+      scheduleType: scheduleType,
+      Username: name,
+      Instructions: description,
+      day1workout: day1workout,
+      day2workout: day2workout,
+      day3workout: day3workout,
+    };
 
-    // try {
-    //   // Send a POST request to the backend API
-    //   const response = await axios.post(
-    //     `http://localhost:5000/api/add-workout/:userId`, // Replace with your actual endpoint
-    //     formData
-    //   );
+    try {
+      let response;
+      if (workoutid) {
+        // Update existing workout
+        response = await axios.put(
+          `http://localhost:5000/register/update-workout/${workoutid}`,
+          formData
+        );
+        console.log("Workout updated successfully:", response.data);
+        alert("Workout updated successfully!");
+      } else {
+        // Add new workout
+        response = await axios.post(
+          `http://localhost:5000/register/add-workout/${id}`,
+          formData
+        );
+        console.log("Workout added successfully:", response.data);
+        alert("Workout added successfully!");
+      }
 
-    //   console.log("Workout added successfully:", response.data);
-    //   // Optionally, you can add navigation logic here if needed
-    // } catch (error) {
-    //   console.error("Error adding workout:", error.message);
-    // }
+      // Go back to the previous page
+      navigate(-1);
+    } catch (error) {
+      console.error("Error during workout submission:", error.message);
+    }
+  };
+
+  const loadWorkout = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/register/get-workouts/${workoutid}`
+      );
+      
+      if (response.status === 200) {
+        const workouts = response.data;
+        if (workouts.length > 0) {
+          // Assuming you want to set the first workout data for now
+          const workout = workouts[0];
+          setDescription(workout.Instructions);
+          setDay1workout(workout.day1workout);
+          setDay2workout(workout.day2workout);
+          setDay3workout(workout.day3workout);
+          // Set any other workout related data you want to display
+        } else {
+          console.warn("No workouts found for this user.");
+        }
+      } else {
+        console.error("Failed to load workouts:", response.status);
+      }
+    } catch (error) {
+      console.error("Error loading workouts:", error.message);
+    }
   };
 
   useEffect(() => {
@@ -57,29 +102,36 @@ const CreateWorkout = () => {
       setAge(foundUser.age);
       setWeight(foundUser.weight);
       setGender(foundUser.gender);
-      setScheduleType(foundUser.scheduleType); // Set the schedule type from user data
-
-      
-
+      setScheduleType(foundUser.scheduleType);
+      setWorkoutId(foundUser.workouts[0]);
+  
       const frontBase64 = Buffer.from(
         foundUser.frontBodyPicture.img.data
       ).toString("base64");
       const frontSrc = `data:${foundUser.frontBodyPicture.img.contentType};base64,${frontBase64}`;
       setFrontImage(frontSrc);
-
+  
       const backBase64 = Buffer.from(
         foundUser.backBodyPicture.img.data
       ).toString("base64");
       const backSrc = `data:${foundUser.backBodyPicture.img.contentType};base64,${backBase64}`;
       setBackImage(backSrc);
     }
-  }, []);
-
+  }, [id, users.data]);
+  
+  useEffect(() => {
+    if (workoutid) {
+      loadWorkout();
+    }
+  }, [workoutid]);
+  
   return (
     <div className="create-workout-form-container">
       <h2>WORKOUT</h2>
+      <h3>Personal Information</h3>
+      <hr />
+      <br />
       <section className="personal-section">
-        <h3>Personal Information</h3>
         <div className="personal">
           <label style={{ marginLeft: "1rem" }}>Name:</label>
           <input
@@ -155,6 +207,9 @@ const CreateWorkout = () => {
             )}
           </div>
         </div>
+        <br />
+        <h3>Workout Sheet</h3>
+        <hr />
 
         <div className="desc">
           <label>Instructions</label>
@@ -162,6 +217,7 @@ const CreateWorkout = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
+            placeholder="Instructions for player"
           ></textarea>
         </div>
 
@@ -173,6 +229,7 @@ const CreateWorkout = () => {
                 placeholder="Enter workout details..."
                 value={day1workout}
                 onChange={(e) => setDay1workout(e.target.value)}
+                required
               ></textarea>
             </div>
             <div className="workoutd2">
