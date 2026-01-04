@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
 
 const signupSchema = new mongoose.Schema(
   {
@@ -17,6 +17,22 @@ const signupSchema = new mongoose.Schema(
       type: String,
       enum: ["admin", "user"],
       default: "user",
+    },
+    fullName: {
+      type: String,
+      trim: true,
+    },
+    phone: {
+      type: String,
+      trim: true,
+    },
+    profileCompleted: {
+      type: Boolean,
+      default: false,
+    },
+    registrationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Register",
     },
   },
   {

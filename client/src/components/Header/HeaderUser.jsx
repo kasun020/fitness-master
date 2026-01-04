@@ -1,9 +1,29 @@
-import React from "react";
-import "./HeaderUser.css";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import "./HeaderUser.css";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("token"))
+  );
+
+  useEffect(() => {
+    setIsLoggedIn(Boolean(localStorage.getItem("token")));
+  }, [location.pathname]);
+
+  const handleAuthClick = () => {
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/");
+  };
+
   return (
     <div className="header">
       <img src={Logo} alt="" className="logo" />
@@ -28,6 +48,13 @@ const Header = () => {
             <Link to="/profile" className="nav-link">
               Profile
             </Link>
+          </li>
+
+          <li
+            style={{ color: "white", cursor: "pointer" }}
+            onClick={handleAuthClick}
+          >
+            {isLoggedIn ? "Logout" : "Login"}
           </li>
         </ul>
       </nav>

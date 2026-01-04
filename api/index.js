@@ -1,13 +1,16 @@
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import { GridFsStorage } from "multer-gridfs-storage";
 import multer from "multer";
-import dotenv from "dotenv";
-import cors from "cors";
-import cookieParser from "cookie-parser";
 import authRoute from "./Routes/auth.js";
-import userRoute from "./Routes/signupRoute.js";
+import dietPlanRoute from "./Routes/dietPlanRoute.js";
+import notificationRoute from "./Routes/notificationRoute.js";
 import registerRoute from "./Routes/registerRoute.js";
+import userRoute from "./Routes/signupRoute.js";
+import workoutPlanRoute from "./Routes/workoutPlanRoute.js";
+import { assertCloudinaryConfigured } from "./utils/cloudinary.js";
 //import workoutRoute from "./Routes/workoutRoute.js";
 
 dotenv.config();
@@ -28,10 +31,7 @@ app.use(cors(corsOptions));
 // MongoDB connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("MongoDB Database is connected");
   } catch (err) {
     console.error("MongoDB connection FAIL", err);
@@ -48,6 +48,9 @@ const upload = multer({ storage: storage });
 app.use("/auth", authRoute);
 app.use("/user", userRoute);
 app.use("/register", registerRoute);
+app.use("/diet-plan", dietPlanRoute);
+app.use("/notifications", notificationRoute);
+app.use("/workout-plan", workoutPlanRoute);
 //app.use('/workouts', workoutRoute);
 
 app.get("/", (req, res) => {
@@ -57,6 +60,8 @@ app.get("/", (req, res) => {
 const startServer = async () => {
   try {
     await connectDB();
+    // Log Cloudinary status once at startup (similar to MongoDB connection log)
+    assertCloudinaryConfigured();
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });
@@ -68,6 +73,5 @@ const startServer = async () => {
 startServer();
 
 export { upload };
-
 
 //http://localhost:5000/register/

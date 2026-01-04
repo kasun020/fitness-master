@@ -1,58 +1,199 @@
 .admin-dash-table-container {
-    padding: 20px;
-    background-color: #f9f9f9;
+  padding: 0;
+  background-color: transparent;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  gap: 16px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.search-field {
+  flex: 1;
+  max-width: 500px;
+  background-color: white;
+}
+
+.refresh-btn {
+  text-transform: none !important;
+  font-weight: 600 !important;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-table thead tr {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+}
+
+.schedule-table th {
+  padding: 16px;
+  font-weight: 600;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.schedule-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.schedule-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  font-weight: 600 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.physical-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: #555;
+}
+
+.schedule-chip {
+  font-weight: 600 !important;
+}
+
+.payment-chip {
+  cursor: pointer;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-chip {
+  font-weight: 600 !important;
+  text-transform: capitalize;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.assign-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+}
+
+.action-btn {
+  text-transform: none !important;
+  font-weight: 600 !important;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .table-header {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
+
+  .search-field {
+    max-width: 100%;
   }
-  
+
   .schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 18px;
-    text-align: left;
+    font-size: 12px;
   }
-  
-  .schedule-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-  }
-  
-  .schedule-table th, 
+
+  .schedule-table th,
   .schedule-table td {
-    padding: 12px 15px;
+    padding: 12px 8px;
   }
-  
-  .schedule-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    padding: 10px;
   }
-  
-  .schedule-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 10px 6px;
+    font-size: 11px;
   }
-  
-  .schedule-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
-  
-  .schedule-table tbody tr:hover {
-    background-color: #f1f1f1;
+
+  .user-avatar {
+    width: 32px !important;
+    height: 32px !important;
   }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #009879;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+
+  .action-buttons {
+    min-width: auto;
   }
-  
-  button:hover {
-    background-color: #007a63;
-  }
-  
+}

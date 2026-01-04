@@ -1,11 +1,10 @@
-import React from "react";
-import "./Hero.css";
-import Header from "./Header/Header";
-import heart from "../assets/hrt.png";
+import { useNavigate } from "react-router-dom";
+import Calories from "../assets/calories.png";
 import hero_image from "../assets/hero_image.png";
 import hero_image_back from "../assets/hero_image_back.png";
-import Calories from "../assets/calories.png";
-import { useNavigate } from "react-router-dom";
+import heart from "../assets/hrt.png";
+import Header from "./Header/Header";
+import "./Hero.css";
 
 import { motion } from "framer-motion";
 
@@ -13,7 +12,15 @@ const Hero = () => {
   const navigate = useNavigate();
   const transition = { type: "spring", duration: 1.8 };
 
-  const handleJoinNowClick = () => {
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
+
+  const handleTopRightClick = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      navigate("/");
+      return;
+    }
     navigate("/signup");
   };
   return (
@@ -73,8 +80,8 @@ const Hero = () => {
       </div>
 
       <div className="right-h">
-        <button className="btn" onClick={handleJoinNowClick}>
-          Join Now
+        <button className="btn" onClick={handleTopRightClick}>
+          {isLoggedIn ? "Logout" : "Join Now"}
         </button>
 
         {/* heart-rate  */}

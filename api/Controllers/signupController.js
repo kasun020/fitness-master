@@ -1,8 +1,8 @@
 // controllers/authC.js
 // import Register from "../models/registerSchema.js";
-import Signup from "../models/signupSchema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Signup from "../models/signupSchema.js";
 
 // Register a new user
 // export const register = async (req, res) => {
@@ -70,10 +70,10 @@ export const login = async (req, res) => {
 
 // Signup a new user
 export const signup = async (req, res) => {
-  const { email, password, confirmPassword, role } = req.body;
+  const { email, password, confirmPassword } = req.body;
 
   try {
-    const newUser = new Signup({ email, password, role });
+    const newUser = new Signup({ email, password, role: "user" });
     newUser.confirmPassword = confirmPassword; // Set the virtual field for validation
     await newUser.save();
     res.status(201).send({ message: "User registered successfully" });

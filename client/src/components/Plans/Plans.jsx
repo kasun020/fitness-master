@@ -1,12 +1,16 @@
-import React from "react";
-import "./Plans.css";
-import { plansData } from "../../data/plansData";
-import whiteTick from "../../assets/whiteTick.png";
 import { useNavigate } from "react-router-dom";
+import whiteTick from "../../assets/whiteTick.png";
+import { plansData } from "../../data/plansData";
+import "./Plans.css";
 
 const Plan = () => {
   const navigate = useNavigate();
   const handleJoinNowClick = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
     navigate("/registration");
   };
   return (
@@ -22,7 +26,7 @@ const Plan = () => {
       {/* plans card */}
       <div className="plans">
         {plansData.map((plan, i) => (
-          <div className="plan" key={1}>
+          <div className="plan" key={i}>
             {plan.icon}
             <span>{plan.name}</span>
             <span>LKR {plan.price} </span>

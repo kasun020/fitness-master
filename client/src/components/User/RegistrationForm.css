@@ -1,70 +1,212 @@
 .registration-form-container {
+  min-height: 100vh;
   width: 100%;
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #201f1f; /* Orange with 20% opacity */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  /* color: white; */
-  font-size: 18px; /* Increased font size */
-  margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(data:image/png;base64,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);
+  mix-blend-mode: overlay;
+  background-color: #3c3f45;
+  padding: 60px 20px;
 }
 
-.registration-form-container h2 {
-  margin-bottom: 20px;
-  color: white; /* Changed to white */
+.registration-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 30px;
+  color: white;
+  max-width: 900px;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.registration-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--orange);
+  padding: 24px;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(244, 137, 21, 0.3);
+  flex-shrink: 0;
+}
+
+.registration-icon {
+  font-size: 56px !important;
+  color: white;
+}
+
+.registration-title {
+  font-weight: 700 !important;
+  color: white;
+  margin-bottom: 8px !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registration-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+.registration-text-content {
   text-align: left;
-  font-weight: bold;
+  flex: 1;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: white; /* Changed to white */
-}
-
-.form-group select,
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group input[type="tel"],
-.form-group input[type="file"] {
+.registration-card {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
-  box-sizing: border-box;
-  color: #524343;
-  font-size: 86%;
+  max-width: 900px;
+  border-radius: 20px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+  color: white;
 }
 
-.submit-button {
-  padding: 10px 20px;
-  background-color: #ff6600;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 18px; /* Increased font size */
-  /* margin-left: 5%; */
+.upload-box {
+  padding: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.submit-button:hover {
-  background-color: #e65c00;
+.upload-box:hover {
+  border-color: var(--orange);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 137, 21, 0.2);
 }
 
-.custom-select {
-  font-weight: bold;
-  color: black;
+.upload-button {
+  text-transform: none !important;
+  font-weight: 600 !important;
+  padding: 14px 28px !important;
+  border-width: 2px !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 15px !important;
 }
 
-/* Optional: Additional styles for select element */
-.custom-select option {
-  font-weight: bold;
-  color: black;
+.upload-button:hover {
+  background-color: var(--orange) !important;
+  color: white !important;
+  border-color: var(--orange) !important;
+  border-width: 2px !important;
+  transform: scale(1.02);
+}
+
+.registration-submit-btn {
+  background: var(--orange) !important;
+  padding: 16px !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 20px rgba(244, 137, 21, 0.4) !important;
+  transition: all 0.3s ease !important;
+  margin-top: 24px !important;
+  letter-spacing: 0.5px !important;
+}
+
+.registration-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(244, 137, 21, 0.5) !important;
+  background: #e87d0d !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .registration-form-container {
+    padding: 20px 15px;
+  }
+
+  .registration-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .registration-text-content {
+    text-align: center;
+  }
+
+  .registration-title {
+    font-size: 26px !important;
+  }
+
+  .registration-subtitle {
+    font-size: 14px;
+  }
+
+  .registration-icon {
+    font-size: 40px !important;
+  }
+
+  .upload-box {
+    padding: 12px;
+  }
+}
+
+/* Form field styling - same background as card */
+.registration-card .MuiTextField-root,
+.registration-card .MuiFormControl-root {
+  background-color: gray;
+  border-radius: 8px;
+}
+
+.registration-card .MuiOutlinedInput-root {
+  background-color: gray;
+  color: white;
+}
+
+.registration-card .MuiOutlinedInput-input {
+  background-color: transparent;
+  color: white;
+}
+
+.registration-card .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.registration-card .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.registration-card
+  .MuiOutlinedInput-root:hover
+  .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.registration-card
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: var(--orange);
+}
+
+.registration-card .MuiInputLabel-root.Mui-focused {
+  color: var(--orange);
+}
+
+/* Placeholder styling - same color as upload button text */
+.registration-card .MuiOutlinedInput-input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.registration-card .MuiSelect-select {
+  color: white;
+}
+
+.registration-card .MuiInputBase-input::placeholder {
+  color: white;
+  opacity: 1;
 }

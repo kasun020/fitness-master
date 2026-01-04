@@ -1,15 +1,25 @@
-import React from "react";
-import "./loginModal.css";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from "@mui/material";
 
 const Modal = ({ message, onClose }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h3>Error</h3>
-        <p>{message}</p>
-        <button onClick={onClose}>Close</button>
-      </div>
-    </div>
+    <Dialog open onClose={onClose} aria-labelledby="login-error-title">
+      <DialogTitle id="login-error-title">Error</DialogTitle>
+      <DialogContent>
+        <Typography>{message}</Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} variant="contained">
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

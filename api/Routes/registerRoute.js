@@ -1,11 +1,19 @@
 import express from "express";
 import {
   createRegistration,
-  getSingleRegistration,
-  getAllRegistrations,
-  updateRegistration,
   deleteRegistration,
+  getAllRegistrations,
+  getApprovedRegistrations,
+  getMyRegistration,
+  getPendingRegistrations,
+  getRejectedRegistrations,
+  getSingleRegistration,
+  updateRegistration,
+  updateRegistrationStatus,
 } from "../Controllers/registerController.js";
+
+import { requireAdmin } from "../middleware/adminMiddleware.js";
+import { requireAuth } from "../middleware/authMiddleware.js";
 
 import multer from "multer";
 
@@ -18,12 +26,33 @@ const router = express.Router();
 // Create a new registration
 router.post(
   "/add",
+  requireAuth,
   upload.fields([
     { name: "paymentSlip", maxCount: 1 },
     { name: "frontBodyPicture", maxCount: 1 },
     { name: "backBodyPicture", maxCount: 1 },
   ]),
   createRegistration
+);
+
+// User: get my registration
+router.get("/me", requireAuth, getMyRegistration);
+
+// Admin: registrations pending review
+router.get("/pending", requireAuth, requireAdmin, getPendingRegistrations);
+
+// Admin: approved registrations
+router.get("/approved", requireAuth, requireAdmin, getApprovedRegistrations);
+
+// Admin: rejected registrations
+router.get("/rejected", requireAuth, requireAdmin, getRejectedRegistrations);
+
+// Admin: update registration status
+router.patch(
+  "/:id/status",
+  requireAuth,
+  requireAdmin,
+  updateRegistrationStatus
 );
 
 // Get a single registration by ID
@@ -37,64 +66,5 @@ router.put("/update/:id", updateRegistration);
 
 // Delete a registration by ID
 router.delete("/:id", deleteRegistration);
-
-// POST route to add a workout for a user
-router.post("/add-workout/:userId", async (req, res) => {
-  try {
-    const {
-      scheduleType,
-      Username,
-      Instructions,
-      day1workout,
-      day2workout,
-      day3workout,
-    } = req.body;
-    const userId = req.params.userId;
-
-    // Validate if the user exists
-    const user = await Register.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Create a new workout
-    const newWorkout = new Workout({
-      scheduleType: scheduleType,
-      Username: Username,
-      Instructions: Instructions,
-      day1workout: day1workout,
-      day2workout: day2workout,
-      day3workout: day3workout,
-    });
-
-    // Save the workout
-    const savedWorkout = await newWorkout.save();
-
-    // Update user's workouts array
-    user.workouts.push(savedWorkout._id);
-    await user.save();
-
-    res
-      .status(201)
-      .json({ message: "Workout added successfully", workout: savedWorkout });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-// GET route to fetch all workouts for a user
-router.get("/get-workouts/:userId", async (req, res) => {
-  try {
-    const userId = req.params.userId;
-    const user = await Register.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const workouts = await Workout.find({ Username: user.name });
-    res.json(workouts);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
 export default router;

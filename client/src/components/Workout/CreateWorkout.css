@@ -1,8 +1,186 @@
 .create-workout-form-container {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 30px;
+  overflow-y: auto;
 }
 
-.personal-section {
-  border: red 1px solid;
+.page-header {
+  margin-bottom: 30px;
+  padding: 20px 0;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  font-weight: 700 !important;
+  color: #2c3e50;
+  margin-bottom: 8px !important;
+}
+
+.page-subtitle {
+  color: #7f8c8d;
+  font-size: 16px;
+  margin-left: 44px;
+}
+
+.info-card {
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+}
+
+.info-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-weight: 600 !important;
+  color: #2c3e50;
+}
+
+.info-item {
+  padding: 12px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.preview-image {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.05);
+}
+
+.no-image {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #e0e0e0;
+}
+
+.professional-input {
+  background-color: white !important;
+}
+
+.professional-input .MuiOutlinedInput-root {
+  border-radius: 8px;
+}
+
+.professional-input .MuiOutlinedInput-root:hover {
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.professional-input .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.workout-input {
+  font-family: "Courier New", monospace !important;
+}
+
+.workout-instructions {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #2196f3;
+}
+
+.workout-instructions code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  padding: 12px 48px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4) !important;
+}
+
+.submit-button:disabled {
+  background: #cccccc !important;
+  box-shadow: none !important;
+}
+
+/* Accordion styling */
+.MuiAccordion-root {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  margin-bottom: 8px !important;
+}
+
+.MuiAccordion-root:before {
+  display: none;
+}
+
+.MuiAccordionSummary-root {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 8px !important;
+}
+
+.MuiAccordionSummary-root:hover {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .create-workout-form-container {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 24px !important;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    margin-left: 35px;
+  }
+
+  .preview-image,
+  .no-image {
+    max-width: 100%;
+    height: 250px;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
 }
