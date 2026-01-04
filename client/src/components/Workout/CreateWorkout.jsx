@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./createWorkout.css";
+import "./CreateWorkout.css";
 
 import {
   CalendarMonth,
